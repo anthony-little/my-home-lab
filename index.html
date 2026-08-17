@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Australian CGT Planner 2026–27</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Retail investor education tool</p>
+        <h1>Australian Capital Gains Tax Planner</h1>
+        <p>
+          Estimate CGT for shares, managed funds, property and employee share plan parcels using
+          2026–27 resident tax rates, current CGT discount rules, and a forward-looking 1 July 2027 reform scenario.
+        </p>
+      </div>
+      <aside class="notice">
+        <strong>Not tax advice.</strong> This calculator simplifies Australian tax law for “Mum and Dad” planning.
+        Confirm outcomes with the ATO or a registered tax agent before acting.
+      </aside>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>1. Investor profile</h2>
+        <div class="grid two">
+          <label>Other taxable income for sale year (AUD)
+            <input id="income" type="number" min="0" step="1000" value="90000" />
+          </label>
+          <label>Sale financial year
+            <select id="saleYear">
+              <option value="pre2027">Before 1 July 2027: current rules</option>
+              <option value="post2027">On/after 1 July 2027: reform scenario</option>
+            </select>
+          </label>
+          <label>Investor type
+            <select id="investorType">
+              <option>Retail share investor</option>
+              <option>Managed fund investor</option>
+              <option>Property investor</option>
+              <option>Employee share plan participant</option>
+            </select>
+          </label>
+          <label>Strategy lens
+            <select id="strategy">
+              <option>Buy and hold</option>
+              <option>Dollar cost averaging</option>
+              <option>Portfolio rebalancing</option>
+              <option>ESS vest-and-hold</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. Asset parcel</h2>
+        <div class="grid three">
+          <label>Asset class
+            <select id="assetClass">
+              <option value="shares">Listed shares / ETFs</option>
+              <option value="managedFund">Managed fund / trust units</option>
+              <option value="property">Investment property</option>
+              <option value="ess">Employee share plan shares</option>
+            </select>
+          </label>
+          <label>Acquisition date
+            <input id="acquired" type="date" value="2025-07-01" />
+          </label>
+          <label>Sale date
+            <input id="sold" type="date" value="2028-07-01" />
+          </label>
+          <label>Total cost base (AUD)
+            <input id="costBase" type="number" min="0" step="100" value="50000" />
+          </label>
+          <label>Sale proceeds after costs (AUD)
+            <input id="proceeds" type="number" min="0" step="100" value="80000" />
+          </label>
+          <label>Capital losses available (AUD)
+            <input id="losses" type="number" min="0" step="100" value="0" />
+          </label>
+        </div>
+      </section>
+
+      <section class="card reform-fields">
+        <h2>3. Reform and grandfathering inputs</h2>
+        <p>
+          For assets acquired before 1 July 2027 and sold later, the tool splits the gain into a grandfathered
+          pre-reform component and a post-reform component. Use a defensible 1 July 2027 market value where available.
+        </p>
+        <div class="grid three">
+          <label>Market value at 1 July 2027 (AUD)
+            <input id="transitionValue" type="number" min="0" step="100" value="65000" />
+          </label>
+          <label>Post-2027 CPI inflation factor
+            <input id="cpiFactor" type="number" min="1" step="0.001" value="1.035" />
+          </label>
+          <label>New build property election
+            <select id="newBuildElection">
+              <option value="no">No / not applicable</option>
+              <option value="yes">Eligible new build: compare old discount</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="results card">
+        <h2>Estimated result</h2>
+        <div id="summary" class="summary-grid"></div>
+        <h3>Calculation trace</h3>
+        <ol id="trace"></ol>
+      </section>
+
+      <section class="card">
+        <h2>Assumptions and source links</h2>
+        <ul>
+          <li>Uses Australian resident individual tax rates published by the ATO for 2026–27.</li>
+          <li>Applies the current individual 50% CGT discount where an asset is held at least 12 months.</li>
+          <li>Models announced Budget 2026–27 CGT reform from 1 July 2027: inflation-based discount, 30% minimum tax on post-reform gains, grandfathering of pre-1 July 2027 gains, and optional new-build property comparison.</li>
+          <li>Managed fund distributions and ESS taxing points can be complex; enter the adjusted cost base after trust tax-deferred amounts or ESS assessable discounts.</li>
+        </ul>
+        <p class="sources">
+          Sources:
+          <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents">ATO resident tax rates</a>,
+          <a href="https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax/cgt-discount">ATO CGT discount</a>,
+          <a href="https://budget.gov.au/content/04-tax-reform.htm">Budget 2026–27 tax reform</a>.
+        </p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
